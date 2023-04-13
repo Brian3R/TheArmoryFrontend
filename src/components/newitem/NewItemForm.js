@@ -40,7 +40,7 @@ const NewItemForm = () => {
             return;
         }
         try {
-            const response = await fetch('https://thearmory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
+            const response = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
             const user = await response.json();
             const newItem = {
                 title: name,
@@ -50,7 +50,7 @@ const NewItemForm = () => {
                 favorability: favorability
             };
             user.inventory[region].push(newItem);
-            const updateResponse = await fetch('https://thearmory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'), {
+            const updateResponse = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

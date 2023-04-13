@@ -13,7 +13,7 @@ const Generator = () => {
         fetchInventory();
     },[]);
     const fetchInventory = async () => {
-        const response = await fetch('https://thearmory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
+        const response = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
         const responseParsed = await response.json();
         setInventory(responseParsed.inventory);
     }

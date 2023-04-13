@@ -9,7 +9,7 @@ const Inventory = () => {
         fetchInventory();
     },[])
     const fetchInventory = async () => {
-        const response = await fetch('https://thearmory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'))
+        const response = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'))
         const responseParsed = await response.json()
         setData(responseParsed.inventory)
     }
@@ -43,10 +43,10 @@ const Inventory = () => {
     const handleDeletion = async (deleted_item) => {
         console.log(deleted_item);
         try {
-            const response = await fetch('https://thearmory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'));
+            const response = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'));
             let user = await response.json();
             user.inventory[deleted_item.body_region] = user.inventory[deleted_item.body_region].filter((item) => item.title !== deleted_item.title);
-            const updateResponse = await fetch('https://thearmory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'), {
+            const updateResponse = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

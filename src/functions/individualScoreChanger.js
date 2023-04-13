@@ -1,7 +1,7 @@
 
 
 async function individualScoreChanger (index, bodyRegion, isLiked){
-    const response = await fetch('https://thearmory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'));
+    const response = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'));
     const user = await response.json();
     console.log(user);
     console.log(user.inventory[bodyRegion][index].favorability);
@@ -21,7 +21,7 @@ async function individualScoreChanger (index, bodyRegion, isLiked){
     
 
 
-    const updateResponse = await fetch('https://thearmory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'), {
+    const updateResponse = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

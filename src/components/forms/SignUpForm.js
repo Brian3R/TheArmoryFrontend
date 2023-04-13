@@ -16,7 +16,7 @@ const SignUpForm = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const check = await fetch('https://thearmory-api.onrender.com/api/test/signup', {
+        const check = await fetch('https://armory-api.onrender.com/api/test/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ const SignUpForm = () => {
         const data = await check.json();
         if(data.success){
             try {
-                const response = await fetch('https://thearmory-api.onrender.com/api/test/', {
+                const response = await fetch('https://armory-api.onrender.com/api/test/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ const SignUpForm = () => {
                 console.error(error);
             }
             await setFailure(false);
-            const response = await fetch('https://thearmory-api.onrender.com/api/test/search/' + name);
+            const response = await fetch('https://armory-api.onrender.com/api/test/search/' + name);
                 let user = await response.json();
                 setName('');
                 setPassword('');
