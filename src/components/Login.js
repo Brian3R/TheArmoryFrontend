@@ -4,10 +4,10 @@ import LoginForm from './forms/LoginForm';
 
 const Login = () => {
     return(
-        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '800px', margin: '0 auto'}}>
+        <div className='page'>
+            <div>
                 <Navbar/>
-                <h1>
+                <h1 className='text'>
                     Login
                 </h1>
                 <LoginForm/>

@@ -15,15 +15,15 @@ const Inventory = () => {
     }
     if(!sessionStorage.getItem('userid')) {
         return (
-            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-                <div style={{width: '800px', margin: '0 auto'}}>
+            <div className='page'>
+                <div>
                     <Navbar/>
-                    <p>Please log in!</p>
+                    <p className='text'>Please log in!</p>
                 </div>
             </div>
         );
     }
-    if(!data) {return <div>Loading...</div>}
+    if(!data) {return <div className='page'>Loading...</div>}
 
     const translateType = (type) => {
         switch(type) {
@@ -72,13 +72,13 @@ const Inventory = () => {
     };
 
     return (
-        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '800px', margin: '0 auto'}}>
+        <div className='page'>
+            <div>
                 <Navbar/>
-                <h1>
+                <h1 className='text'>
                     Inventory!
                 </h1>
-                <h2>
+                <h2 className='text'>
                     Tops:
                 </h2>
                 <table style={tableStyle}>
@@ -95,12 +95,12 @@ const Inventory = () => {
                                     <td style={cellStyle}>{item.title}</td>
                                     <td style={cellStyle}>{translateType(item.clothing_type)}</td>
                                     <td style={cellStyle}>{item.color}</td>                                
-                                    <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                    <td><button onClick={() => handleDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
                     </tbody>
                 </table>
-                <h2>
+                <h2 className='text'>
                     Bottoms:
                 </h2>
                 <table>
@@ -117,12 +117,12 @@ const Inventory = () => {
                                     <td style={cellStyle}>{item.title}</td>
                                     <td style={cellStyle}>{translateType(item.clothing_type)}</td>
                                     <td style={cellStyle}>{item.color}</td>
-                                    <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                    <td><button onClick={() => handleDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
                     </tbody>
                 </table>
-                <h2>
+                <h2 className='text'>
                     Shoes:
                 </h2>
                 <table>
@@ -139,7 +139,7 @@ const Inventory = () => {
                                     <td style={cellStyle}>{item.title}</td>
                                     <td style={cellStyle}>{translateType(item.clothing_type)}</td>
                                     <td style={cellStyle}>{item.color}</td>
-                                    <td style={cellStyle}><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                    <td><button onClick={() => handleDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
                     </tbody>

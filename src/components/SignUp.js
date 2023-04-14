@@ -4,10 +4,10 @@ import SignUpForm from './forms/SignUpForm';
 
 const SignUp = () => {
     return(
-        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '800px', margin: '0 auto'}}>
+        <div className='page'>
+            <div>
                 <Navbar/>
-                <h1>
+                <h1 className='text'>
                     Sign Up
                 </h1>
                 <SignUpForm/>

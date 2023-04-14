@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import SubmitButton from '../newitem/SubmitButton';
+import '../../App.css'
 
 
 const LoginForm = () => {
@@ -47,15 +48,15 @@ const LoginForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <label>Enter your Username:</label>
+            <label className='text'>Enter your Username:</label>
             <br/>
             <input type="text" value={name} onChange={handleNameChange}/>
             <br/>
-            <label>Enter your Password:</label>
+            <label className='text'>Enter your Password:</label>
             <br/>
             <input type="text" value={password} onChange={handlePasswordChange}/>
             <br/>
-            {failure && <p style={{color:'red'}}>Wrong username or password. Please try again.</p>}
+            {failure && <p className='text'>Wrong username or password. Please try again.</p>}
             <br/>
             <SubmitButton/>
         </form>

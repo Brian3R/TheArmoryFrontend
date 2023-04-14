@@ -104,11 +104,11 @@ const NewItemForm = () => {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <label>Enter your garment name:</label>
+            <label className='text'>Enter your garment name:</label>
             <br/>
             <input type="text" value={name} onChange={handleNameChange}/>
             <br/>
-            <label>Select your item's body region:</label>
+            <label className='text'>Select your item's body region:</label>
             <br/>
             <select onChange={handleRegionChange}>
                 <option value={'-1'}>Select a region</option>
@@ -121,7 +121,7 @@ const NewItemForm = () => {
             <br/>
             {renderTypeDropdown()}
             <br/>
-            <label>Select your garment's color:</label>
+            <label className='text'>Select your garment's color:</label>
             <br/>
             <select onChange={handleColorChange}>
                 <option value={''}>Select a color</option>
@@ -140,7 +140,7 @@ const NewItemForm = () => {
                 <option value={'black'}>Black</option>
             </select>
             <br/>
-            <label>How much do you like this item (1-10)</label>
+            <label className='text'>How much do you like this item (1-10)</label>
             <br/>
             <select onChange={handleFavorabilityChange}>
                 <option value={''}>Select a favorability</option>
@@ -157,7 +157,7 @@ const NewItemForm = () => {
                 <option value={'10'}>10</option>
             </select>
             <br/>
-            {failure && <p style={{color:'red'}}>You must fill all fields before submitting</p>}
+            {failure && <p className='text'>You must fill all fields before submitting</p>}
             <br/>
             <SubmitButton/>
         </form>

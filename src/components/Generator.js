@@ -56,54 +56,54 @@ const Generator = () => {
     };
     if(!sessionStorage.getItem('userid')) {
         return (
-            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-                <div style={{width: '800px', margin: '0 auto'}}>
+            <div className='page'>
+                <div>
                     <Navbar/>
-                    <p>Please log in!</p>
+                    <p className='text'>Please log in!</p>
                 </div>
             </div>
         );
     }
     if(!inventory) {
         return (
-            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-                <div style={{width: '800px', margin: '0 auto'}}>
+            <div className='page'>
+                <div>
                     <Navbar/>
-                    <p>Loading...</p>
+                    <p className='text'>Loading...</p>
                 </div>
             </div>
         );
     }
     if(!(inventory[0] && inventory[1] && inventory[2])) {
         return (
-            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-                <div style={{width: '800px', margin: '0 auto'}}>
+            <div className='page'>
+                <div>
                     <Navbar/>
-                    <p>Please put at least one item in each category (top, bottom, shoes)</p>
+                    <p className='text'>Please put at least one item in each category (top, bottom, shoes)</p>
                 </div>
             </div>
         );
     }
     if(!inventory[0].length || !inventory[1].length || !inventory[2].length) {
         return (
-            <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-                <div style={{width: '800px', margin: '0 auto'}}>
+            <div className='page'>
+                <div>
                     <Navbar/>
-                    <p>Please put at least one item in each category (top, bottom, shoes)</p>
+                    <p className='text'>Please put at least one item in each category (top, bottom, shoes)</p>
                 </div>
             </div>
         );
     }
     return (
-        <div style={{height:'100vh',width:'100vw',backgroundColor:'#a9d1cc'}}>
-            <div style={{width: '800px', margin: '0 auto'}}>
+        <div className='page'>
+            <div>
                 <Navbar/>
-                <h1>
+                <h1 className='text'>
                     Generator!
                 </h1>
                 <button onClick={handleGeneration}>Make me an outfit</button>
                 <br/>
-                <h2>Outfit:</h2>
+                <h2 className='text'>Outfit:</h2>
                 {indexes && inventory &&
                     <div>
                         <table style={tableStyle}>

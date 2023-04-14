@@ -1,9 +1,10 @@
 import React from 'react';
+import '../../App.css';
 
 const SubmitButton = () => {
     return (
         <div>
-            <button type = "submit">Submit</button>
+            <button className='submitButton' type = "submit">Submit</button>
         </div>
     )
 }
