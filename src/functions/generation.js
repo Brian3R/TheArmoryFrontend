@@ -34,9 +34,21 @@ function generation (inventory){
     let score2Index = 0;
     let score3 = 0;
     let score3Index = 0;
+    let score4 = 0;
+    let score4Index = 0;
+    let score5 = 0;
+    let score5Index = 0;
+    let score6 = 0;
+    let score6Index = 0;
 
     for(var i=0; i < inventory[shirtIndex].length; i++) {
         if(inventory[shirtIndex][i].favorability >= score1) {
+            score6 = score5
+            score6Index = score5Index
+            score5 = score4
+            score5Index = score4Index
+            score4 = score3
+            score4Index = score3Index
             score3 = score2
             score3Index = score2Index
             score2 = score1
@@ -45,21 +57,54 @@ function generation (inventory){
             score1Index = i
         }
         else if(inventory[shirtIndex][i].favorability >= score2){
+            score6 = score5
+            score6Index = score5Index
+            score5 = score4
+            score5Index = score4Index
+            score4 = score3
+            score4Index = score3Index
             score3 = score2
             score3Index = score2Index
             score2 = inventory[shirtIndex][i].favorability
             score2Index = i
         }
         else if(inventory[shirtIndex][i].favorability >= score3){
+            score6 = score5
+            score6Index = score5Index
+            score5 = score4
+            score5Index = score4Index
+            score4 = score3
+            score4Index = score3Index
             score3 = inventory[shirtIndex][i].favorability
             score3Index = i
+        }
+        else if(inventory[shirtIndex][i].favorability >= score4){
+            score6 = score5
+            score6Index = score5Index
+            score5 = score4
+            score5Index = score4Index
+            score4 = inventory[shirtIndex][i].favorability
+            score4Index = i
+        }
+        else if(inventory[shirtIndex][i].favorability >= score5){
+            score6 = score5
+            score6Index = score5Index
+            score5 = inventory[shirtIndex][i].favorability
+            score5Index = i
+        }
+        else if(inventory[shirtIndex][i].favorability >= score6){
+            score6 = inventory[shirtIndex][i].favorability
+            score6Index = i
         }
     }
 
     console.log("first shirt: ", score1Index)
     console.log("second shirt: ", score2Index)
     console.log("third shirt: ", score3Index)
-    let totalScore = score1 + score2 + score3;
+    console.log("fourth shirt: ", score4Index)
+    console.log("fifth shirt: ", score5Index)
+    console.log("sixth shirt: ", score6Index)
+    let totalScore = score1 + score2 + score3 + score4 + score5 + score6;
     console.log("total score: ", totalScore)
     let randomSeed = Math.floor(Math.random() * totalScore)
     console.log("randomSeed: ", randomSeed)
@@ -81,6 +126,24 @@ function generation (inventory){
         selectedShirtIndex = score3Index;
         selectedShirtTitle = inventory[shirtIndex][score3Index].title;
         shirtColor = inventory[shirtIndex][score3Index].color;
+    }
+    else if(randomSeed < score1 + score2 + score3 + score4){
+        console.log("choosing shirt 4")
+        selectedShirtIndex = score4Index;
+        selectedShirtTitle = inventory[shirtIndex][score4Index].title;
+        shirtColor = inventory[shirtIndex][score4Index].color;
+    }
+    else if(randomSeed < score1 + score2 + score3 + score4 + score5){
+        console.log("choosing shirt 5")
+        selectedShirtIndex = score5Index;
+        selectedShirtTitle = inventory[shirtIndex][score5Index].title;
+        shirtColor = inventory[shirtIndex][score5Index].color;
+    }
+    else if(randomSeed < score1 + score2 + score3 + score4 + score5 + score6){
+        console.log("choosing shirt 6")
+        selectedShirtIndex = score6Index;
+        selectedShirtTitle = inventory[shirtIndex][score6Index].title;
+        shirtColor = inventory[shirtIndex][score6Index].color;
     }
 
     console.log(shirtColor);
@@ -106,8 +169,13 @@ function generation (inventory){
     // Current color (for looping)
     let currentColor = "";
 
-    // Current highest match score
-    let highestMatch = 0;
+    // Variables for determing top pants
+    score1 = 0;
+    score1Index = 0;
+    score2 = 0;
+    score2Index = 0;
+    score3 = 0;
+    score3Index = 0;
 
     for(var i=0; i < inventory[pantsIndex].length; i++) {
         matchScore = inventory[pantsIndex][i].favorability
@@ -116,12 +184,49 @@ function generation (inventory){
         if(colorMatcher(shirtColor,currentColor) === true){
             matchScore = matchScore * matchMultiplier;
         }
-        if(matchScore >= highestMatch){
-            highestMatch = matchScore;
-            selectedPantsIndex = i;
-            selectedPantsTitle = inventory[pantsIndex][i].title;
-            pantsColor = currentColor;
+
+        if(matchScore >= score1) {
+            score3 = score2
+            score3Index = score2Index
+            score2 = score1
+            score2Index = score1Index
+            score1 = matchScore
+            score1Index = i
         }
+        else if(matchScore >= score2){
+            score3 = score2
+            score3Index = score2Index
+            score2 = matchScore
+            score2Index = i
+        }
+        else if(matchScore >= score3){
+            score3 = matchScore
+            score3Index = i
+        }
+    }
+
+    totalScore = score1 + score2 + score3;
+    console.log("total score: ", totalScore)
+    randomSeed = Math.floor(Math.random() * totalScore)
+    console.log("randomSeed: ", randomSeed)
+
+    if (randomSeed < score1){
+        console.log("choosing pants 1")
+        selectedPantsIndex = score1Index;
+        selectedPantsTitle = inventory[pantsIndex][score1Index].title;
+        pantsColor = inventory[pantsIndex][score1Index].color;
+    }
+    else if(randomSeed < score1 + score2){
+        console.log("choosing pants 2")
+        selectedPantsIndex = score2Index;
+        selectedPantsTitle = inventory[pantsIndex][score2Index].title;
+        pantsColor = inventory[pantsIndex][score2Index].color;
+    }
+    else if(randomSeed < score1 + score2 + score3){
+        console.log("choosing pants 3")
+        selectedPantsIndex = score3Index;
+        selectedPantsTitle = inventory[pantsIndex][score3Index].title;
+        pantsColor = inventory[pantsIndex][score3Index].color;
     }
 
     console.log(pantsColor);
@@ -147,8 +252,13 @@ function generation (inventory){
     // Current color (for looping)
     currentColor = "";
 
-    // Current highest match score
-    highestMatch = 0;
+    // Variables for determing top pants
+    score1 = 0;
+    score1Index = 0;
+    score2 = 0;
+    score2Index = 0;
+    score3 = 0;
+    score3Index = 0;
 
     for(var i=0; i < inventory[shoesIndex].length; i++) {
         matchScore = inventory[shoesIndex][i].favorability
@@ -157,12 +267,49 @@ function generation (inventory){
         if(colorMatcher(shirtColor,currentColor) === true){
             matchScore = matchScore * matchMultiplier;
         }
-        if(matchScore >= highestMatch){
-            highestMatch = matchScore;
-            selectedShoesIndex = i;
-            selectedShoesTitle = inventory[shoesIndex][i].title;
-            shoesColor = currentColor;
+
+        if(matchScore >= score1) {
+            score3 = score2
+            score3Index = score2Index
+            score2 = score1
+            score2Index = score1Index
+            score1 = matchScore
+            score1Index = i
         }
+        else if(matchScore >= score2){
+            score3 = score2
+            score3Index = score2Index
+            score2 = matchScore
+            score2Index = i
+        }
+        else if(matchScore >= score3){
+            score3 = matchScore
+            score3Index = i
+        }
+    }
+
+    totalScore = score1 + score2 + score3;
+    console.log("total score: ", totalScore)
+    randomSeed = Math.floor(Math.random() * totalScore)
+    console.log("randomSeed: ", randomSeed)
+
+    if (randomSeed < score1){
+        console.log("choosing shoes 1")
+        selectedShoesIndex = score1Index;
+        selectedShoesTitle = inventory[shoesIndex][score1Index].title;
+        shoesColor = inventory[shoesIndex][score1Index].color;
+    }
+    else if(randomSeed < score1 + score2){
+        console.log("choosing shoes 2")
+        selectedShoesIndex = score2Index;
+        selectedShoesTitle = inventory[shoesIndex][score2Index].title;
+        shoesColor = inventory[shoesIndex][score2Index].color;
+    }
+    else if(randomSeed < score1 + score2 + score3){
+        console.log("choosing shoes 3")
+        selectedShoesIndex = score3Index;
+        selectedShoesTitle = inventory[shoesIndex][score3Index].title;
+        shoesColor = inventory[shoesIndex][score3Index].color;
     }
 
     console.log(shoesColor);
