@@ -36,7 +36,9 @@ const SignUpForm = () => {
                         _id:"hello",
                         name: name,
                         password: password,
-                        inventory: [[],[],[]]
+                        inventory: [[],[],[]],
+                        dislike_count: 0,
+                        like_count: 0
                     })
                 }
                 );
