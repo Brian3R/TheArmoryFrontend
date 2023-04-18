@@ -12,6 +12,9 @@ const Home = () => {
                 </h1>
                 <p className='text'>Welcome to the Armory. Please sign up or login to access the inventory, new item screen, and generator.</p>
             </div>
+            <br/>
+            <br/>
+            <p> </p>
         </div>
     );
 }

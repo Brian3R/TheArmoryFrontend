@@ -11,7 +11,7 @@ const Inventory = () => {
     const fetchInventory = async () => {
         const response = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'))
         const responseParsed = await response.json()
-        setData(responseParsed.inventory)
+        setData(responseParsed);
     }
     if(!sessionStorage.getItem('userid')) {
         return (
@@ -40,12 +40,34 @@ const Inventory = () => {
     }
 
 
-    const handleDeletion = async (deleted_item) => {
+    const handleItemDeletion = async (deleted_item) => {
         console.log(deleted_item);
         try {
             const response = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'));
             let user = await response.json();
             user.inventory[deleted_item.body_region] = user.inventory[deleted_item.body_region].filter((item) => item.title !== deleted_item.title);
+            const updateResponse = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'), {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            fetchInventory();
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
+
+    const handleOutfitDeletion = async(deleted_outfit) => {
+        console.log(deleted_outfit);
+        try {
+            const response = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'));
+            let user = await response.json();
+            user.saved_outfits = user.saved_outfits.filter((outfit) => outfit[0].title !== deleted_outfit[0].title && 
+                                                                       outfit[1].title !== deleted_outfit[1].title &&
+                                                                       outfit[2].title !== deleted_outfit[2].title);
             const updateResponse = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'), {
                 method: 'PATCH',
                 headers: {
@@ -90,13 +112,13 @@ const Inventory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data[0] && data[0].map((item) => (
-                                <tr key={item.title}>
-                                    <td style={cellStyle}>{item.title}</td>
-                                    <td style={cellStyle}>{translateType(item.clothing_type)}</td>
-                                    <td style={cellStyle}>{item.color}</td>                                
-                                    <td><button onClick={() => handleDeletion(item)}>Delete</button></td>
-                                </tr>
+                        {data.inventory && data.inventory[0] && data.inventory[0].map((item) => (
+                            <tr key={item.title}>
+                                <td style={cellStyle}>{item.title}</td>
+                                <td style={cellStyle}>{translateType(item.clothing_type)}</td>
+                                <td style={cellStyle}>{item.color}</td>                                
+                                <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
+                            </tr>
                         ))}
                     </tbody>
                 </table>
@@ -112,12 +134,12 @@ const Inventory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data[1] && data[1].map((item) => (
+                        {data.inventory && data.inventory[1] && data.inventory[1].map((item) => (
                                 <tr key={item.title}>
                                     <td style={cellStyle}>{item.title}</td>
                                     <td style={cellStyle}>{translateType(item.clothing_type)}</td>
                                     <td style={cellStyle}>{item.color}</td>
-                                    <td><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                    <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
                     </tbody>
@@ -134,16 +156,54 @@ const Inventory = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data[2] && data[2].map((item) => (
+                        {data.inventory && data.inventory[2] && data.inventory[2].map((item) => (
                                 <tr key={item.title}>
                                     <td style={cellStyle}>{item.title}</td>
                                     <td style={cellStyle}>{translateType(item.clothing_type)}</td>
                                     <td style={cellStyle}>{item.color}</td>
-                                    <td><button onClick={() => handleDeletion(item)}>Delete</button></td>
+                                    <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
                     </tbody>
                 </table>
+                <br/>
+                <h2 className='text'>
+                    Saved Outfits:
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style={cellStyle}>Name</th>
+                            <th style={cellStyle}>Type</th>
+                            <th style={cellStyle}>Color</th>
+                        </tr>
+                    </thead>
+                </table>
+                {data.saved_outfits && data.saved_outfits.map((outfit) => (
+                    <table>
+                        <tbody>
+                            <tr key={outfit[0]}>
+                                <td style={cellStyle}>{outfit[0].title}</td>
+                                <td style={cellStyle}>{translateType(outfit[0].clothing_type)}</td>
+                                <td style={cellStyle}>{outfit[0].color}</td>
+                            </tr>
+                            <tr key={outfit[1]}>
+                                <td style={cellStyle}>{outfit[1].title}</td>
+                                <td style={cellStyle}>{translateType(outfit[1].clothing_type)}</td>
+                                <td style={cellStyle}>{outfit[1].color}</td>
+                                <td><button onClick={() => handleOutfitDeletion(outfit)}>Delete</button></td>
+                            </tr>
+                            <tr key={outfit[2]}>
+                            <td style={cellStyle}>{outfit[2].title}</td>
+                                <td style={cellStyle}>{translateType(outfit[2].clothing_type)}</td>
+                                <td style={cellStyle}>{outfit[2].color}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                ))}
+                <br/>
+                <br/>
+                <p> </p>
             </div>
         </div>
     );

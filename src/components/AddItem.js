@@ -10,6 +10,9 @@ const AddItem = () => {
                     <Navbar/>
                     <p className='text'>Please log in!</p>
                 </div>
+                <br/>
+            <br/>
+            <p> </p>
             </div>
         );
     }
@@ -22,6 +25,9 @@ const AddItem = () => {
                 </h1>
                 <NewItemForm/>
             </div>
+            <br/>
+            <br/>
+            <p> </p>
         </div>
     );
 }

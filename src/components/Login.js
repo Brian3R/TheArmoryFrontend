@@ -12,6 +12,9 @@ const Login = () => {
                 </h1>
                 <LoginForm/>
             </div>
+            <br/>
+            <br/>
+            <p> </p>
         </div>
     );
 }

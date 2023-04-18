@@ -12,6 +12,9 @@ const SignUp = () => {
                 </h1>
                 <SignUpForm/>
             </div>
+            <br/>
+            <br/>
+            <p> </p>
         </div>
     );
 }

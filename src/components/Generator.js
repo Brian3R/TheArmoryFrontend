@@ -9,6 +9,7 @@ const Generator = () => {
     const [inventory, setInventory] = useState([]);
     const [indexes, setIndexes] = useState(null);
     const [alreadyLiked, setAlreadyLiked] = useState(false);
+    const [alreadySaved, setAlreadySaved] = useState(false);
     useEffect(() => {
         fetchInventory();
     },[]);
@@ -29,6 +30,32 @@ const Generator = () => {
     }
     const handleDislike = async () => {
         await outfitScoreChanger(indexes.top,indexes.bottom,indexes.shoes,false);
+        //window.location.reload(true);
+    }
+    const handleSave = async () => {
+        try {
+            const response = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
+            const user = await response.json();
+            const newOutfit = [
+                inventory[0][indexes.top],
+                inventory[1][indexes.bottom],
+                inventory[2][indexes.shoes]
+            ];
+            user.saved_outfits.push(newOutfit);
+            const updateResponse = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'), {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            const updatedUser = await updateResponse.json();
+            console.log(updatedUser);
+            setAlreadySaved(true);
+        }
+        catch (error) {
+            console.error(error);
+        }
         //window.location.reload(true);
     }
     const translateType = (type) => {
@@ -61,6 +88,9 @@ const Generator = () => {
                     <Navbar/>
                     <p className='text'>Please log in!</p>
                 </div>
+                <br/>
+                <br/>
+                <p> </p>
             </div>
         );
     }
@@ -71,6 +101,9 @@ const Generator = () => {
                     <Navbar/>
                     <p className='text'>Loading...</p>
                 </div>
+                <br/>
+                <br/>
+                <p> </p>
             </div>
         );
     }
@@ -81,6 +114,9 @@ const Generator = () => {
                     <Navbar/>
                     <p className='text'>Please put at least one item in each category (top, bottom, shoes)</p>
                 </div>
+                <br/>
+                <br/>
+                <p> </p>
             </div>
         );
     }
@@ -91,6 +127,9 @@ const Generator = () => {
                     <Navbar/>
                     <p className='text'>Please put at least one item in each category (top, bottom, shoes)</p>
                 </div>
+                <br/>
+                <br/>
+                <p> </p>
             </div>
         );
     }
@@ -132,11 +171,15 @@ const Generator = () => {
                                 </tr>
                             </tbody>
                         </table>
-                        {!alreadyLiked && <button onClick={handleLike}>I like this outfit</button>}
-                        {!alreadyLiked && <button onClick={handleDislike}>I don't like this outfit</button>}
+                        {!alreadyLiked && <div><button onClick={handleLike}>I like this outfit</button><br/></div>}
+                        {!alreadyLiked && <div><button onClick={handleDislike}>I don't like this outfit</button><br/></div>}
+                        {!alreadySaved && <div><button onClick={handleSave}>Save Outfit</button><br/></div>}
                     </div>
                 }
             </div>
+            <br/>
+            <br/>
+            <p> </p>
         </div>
     );
 }
