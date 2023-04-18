@@ -117,7 +117,7 @@ const NewItemForm = () => {
                 <option value={'2'}>Shoes</option>
             </select>
             <br/>
-            {region !== -1 && <label>Select your item's type:</label>}
+            {region !== -1 && <label className='text'>Select your item's type:</label>}
             <br/>
             {renderTypeDropdown()}
             <br/>

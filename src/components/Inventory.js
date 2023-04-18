@@ -81,7 +81,26 @@ const Inventory = () => {
             console.error(error);
         }
     }
-
+    const handleFavorabilityChange = async (liked, changed_item, region) => {
+        try {
+            const response = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'));
+            let user = await response.json();
+            let index = user.inventory[region].findIndex(item => item.title === changed_item.title);
+            if(liked && user.inventory[region][index].favorability < 10) {user.inventory[region][index].favorability++;}
+            if(!liked && user.inventory[region][index].favorability > 0) {user.inventory[region][index].favorability--;}
+            const updateResponse = await fetch('https://armory-api.onrender.com/api/test/' + sessionStorage.getItem('userid'), {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+            await fetchInventory();
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }
     const tableStyle = {
         borderCollapse: 'collapse',
     };
@@ -109,6 +128,7 @@ const Inventory = () => {
                             <th style={cellStyle}>Name</th>
                             <th style={cellStyle}>Type</th>
                             <th style={cellStyle}>Color</th>
+                            <th style={cellStyle}>Favorability</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,7 +136,16 @@ const Inventory = () => {
                             <tr key={item.title}>
                                 <td style={cellStyle}>{item.title}</td>
                                 <td style={cellStyle}>{translateType(item.clothing_type)}</td>
-                                <td style={cellStyle}>{item.color}</td>                                
+                                <td style={cellStyle}>{item.color}</td>    
+                                <td style={cellStyle}>
+                                    <div style={{display:'flex',justifyContent:'space-between'}}>
+                                        <div>{item.favorability}</div>
+                                        <div>
+                                            <button onClick={() => handleFavorabilityChange(true,item,0)}>+</button>
+                                            <button onClick={() => handleFavorabilityChange(false,item,0)}>-</button>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                             </tr>
                         ))}
@@ -131,6 +160,8 @@ const Inventory = () => {
                             <th style={cellStyle}>Name</th>
                             <th style={cellStyle}>Type</th>
                             <th style={cellStyle}>Color</th>
+                            <th style={cellStyle}>Favorability</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -139,6 +170,15 @@ const Inventory = () => {
                                     <td style={cellStyle}>{item.title}</td>
                                     <td style={cellStyle}>{translateType(item.clothing_type)}</td>
                                     <td style={cellStyle}>{item.color}</td>
+                                    <td style={cellStyle}>
+                                        <div style={{display:'flex',justifyContent:'space-between'}}>
+                                            <div>{item.favorability}</div>
+                                            <div>
+                                                <button onClick={() => handleFavorabilityChange(true,item,1)}>+</button>
+                                                <button onClick={() => handleFavorabilityChange(false,item,1)}>-</button>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
@@ -147,12 +187,13 @@ const Inventory = () => {
                 <h2 className='text'>
                     Shoes:
                 </h2>
-                <table>
+                <table style={tableStyle}>
                     <thead>
                         <tr>
                             <th style={cellStyle}>Name</th>
                             <th style={cellStyle}>Type</th>
                             <th style={cellStyle}>Color</th>
+                            <th style={cellStyle}>Favorability</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -161,6 +202,15 @@ const Inventory = () => {
                                     <td style={cellStyle}>{item.title}</td>
                                     <td style={cellStyle}>{translateType(item.clothing_type)}</td>
                                     <td style={cellStyle}>{item.color}</td>
+                                    <td style={cellStyle}>
+                                        <div style={{display:'flex',justifyContent:'space-between'}}>
+                                            <div>{item.favorability}</div>
+                                            <div>
+                                                <button onClick={() => handleFavorabilityChange(true,item,2)}>+</button>
+                                                <button onClick={() => handleFavorabilityChange(false,item,2)}>-</button>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}

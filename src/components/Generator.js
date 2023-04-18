@@ -22,14 +22,45 @@ const Generator = () => {
         setIndexes(generation(inventory));
         setAlreadyLiked(false);
     }
-    const handleLike = () => {
+    const handleLike = async () => {
         if(!alreadyLiked) {
-            outfitScoreChanger(indexes.top,indexes.bottom,indexes.shoes,true);
+            try {
+                const response = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
+                const user = await response.json();
+                user.like_count++;
+                await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'), {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(user)
+                });
+            }
+            catch(error) {
+                console.error(error);
+            }
+            await outfitScoreChanger(indexes.top,indexes.bottom,indexes.shoes,true);
             setAlreadyLiked(true);
         }
     }
     const handleDislike = async () => {
+        try {
+            const response = await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'));
+            const user = await response.json();
+            user.dislike_count++;
+            await fetch('https://armory-api.onrender.com/api/test/'+ sessionStorage.getItem('userid'), {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            });
+        }
+        catch(error) {
+            console.error(error);
+        }
         await outfitScoreChanger(indexes.top,indexes.bottom,indexes.shoes,false);
+        setAlreadyLiked(true);
         //window.location.reload(true);
     }
     const handleSave = async () => {
