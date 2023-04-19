@@ -15,7 +15,7 @@ const Navbar = () => {
     }
     const handleSignout = async () => {
         sessionStorage.removeItem('userid');
-        window.location.reload(true);
+        //window.location.reload(true);
     }
     return (
         <nav style={{paddingTop:'30px',paddingBottom:'30px'}}>
