@@ -1,5 +1,6 @@
 {
-    "routes": [
-      { "src": "/**", "serve": "/index.html", "status": 200 }
-    ]
+  "static_rules": {
+    "extensions": [".html", ".js", ".css", ".png", ".jpg"],
+    "fallback": "/index.html"
   }
+}
