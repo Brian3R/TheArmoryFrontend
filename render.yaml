@@ -1,8 +1,22 @@
-buildCommand: npm run build
-env:
-  PUBLIC_URL: https://armory.onrender.com
-routes:
-  - src: /
-    dest: /index.html
-  - src: /static/(.*)
-    dest: /static/$1
+- type: web
+  name: my blog
+  env: static
+  buildCommand: yarn build
+  staticPublishPath: ./build
+  pullRequestPreviewsEnabled: true # optional
+  buildFilter:
+    paths:
+    - src/**/*.js
+    ignoredPaths:
+    - src/**/*.test.js
+  headers:
+    - path: /*
+      name: X-Frame-Options
+      value: sameorigin
+  routes:
+    - type: redirect
+      source: /old
+      destination: /new
+    - type: rewrite
+      source: /a/*
+      destination: /a
