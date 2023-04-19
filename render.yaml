@@ -1,0 +1,8 @@
+buildCommand: npm run build
+env:
+  PUBLIC_URL: https://armory.onrender.com
+routes:
+  - src: /
+    dest: /index.html
+  - src: /static/(.*)
+    dest: /static/$1
