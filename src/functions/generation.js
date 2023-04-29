@@ -181,6 +181,9 @@ function generation (inventory){
     // Current color (for looping)
     let currentColor = "";
 
+    // Current type (for looping)
+    let currentType = "";
+
     // Variables for determing top pants
     score1 = 0;
     score1Index = 0;
@@ -271,6 +274,9 @@ function generation (inventory){
 
     // Current color (for looping)
     currentColor = "";
+
+    // Current type (for looping)
+    currentType = "";
 
     // Variables for determing top pants
     score1 = 0;
