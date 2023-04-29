@@ -24,6 +24,9 @@ function generation (inventory){
     // The color of the shirt that is selected
     let shirtColor = "";
 
+    // The type of the shirt that is selected
+    let shirtType = "";
+
     // Index location of the selected shirt
     let selectedShirtIndex = 0;
 
@@ -114,36 +117,42 @@ function generation (inventory){
         selectedShirtIndex = score1Index;
         selectedShirtTitle = inventory[shirtIndex][score1Index].title;
         shirtColor = inventory[shirtIndex][score1Index].color;
+        shirtType = inventory[shirtIndex][score1Index].clothing_type;
     }
     else if(randomSeed < score1 + score2){
         console.log("choosing shirt 2")
         selectedShirtIndex = score2Index;
         selectedShirtTitle = inventory[shirtIndex][score2Index].title;
         shirtColor = inventory[shirtIndex][score2Index].color;
+        shirtType = inventory[shirtIndex][score2Index].clothing_type
     }
     else if(randomSeed < score1 + score2 + score3){
         console.log("choosing shirt 3")
         selectedShirtIndex = score3Index;
         selectedShirtTitle = inventory[shirtIndex][score3Index].title;
         shirtColor = inventory[shirtIndex][score3Index].color;
+        shirtType = inventory[shirtIndex][score3Index].clothing_type
     }
     else if(randomSeed < score1 + score2 + score3 + score4){
         console.log("choosing shirt 4")
         selectedShirtIndex = score4Index;
         selectedShirtTitle = inventory[shirtIndex][score4Index].title;
         shirtColor = inventory[shirtIndex][score4Index].color;
+        shirtType = inventory[shirtIndex][score4Index].clothing_type
     }
     else if(randomSeed < score1 + score2 + score3 + score4 + score5){
         console.log("choosing shirt 5")
         selectedShirtIndex = score5Index;
         selectedShirtTitle = inventory[shirtIndex][score5Index].title;
         shirtColor = inventory[shirtIndex][score5Index].color;
+        shirtType = inventory[shirtIndex][score5Index].clothing_type
     }
     else if(randomSeed < score1 + score2 + score3 + score4 + score5 + score6){
         console.log("choosing shirt 6")
         selectedShirtIndex = score6Index;
         selectedShirtTitle = inventory[shirtIndex][score6Index].title;
         shirtColor = inventory[shirtIndex][score6Index].color;
+        shirtType = inventory[shirtIndex][score6Index].clothing_type
     }
 
     console.log(shirtColor);
@@ -159,6 +168,9 @@ function generation (inventory){
 
     // The color of the pants that is selected
     let pantsColor = "";
+
+    // The type of the pants that is selected
+    let pantsType = "";
 
     // Index location of the selected pants
     let selectedPantsIndex = 0;
@@ -180,6 +192,11 @@ function generation (inventory){
     for(var i=0; i < inventory[pantsIndex].length; i++) {
         matchScore = inventory[pantsIndex][i].favorability
         currentColor = inventory[pantsIndex][i].color
+        currentType = inventory[pantsIndex][i].clothing_type
+
+        if(styleMatcher(shirtType,currentType) === true){
+            matchScore = matchScore + 3;
+        }
 
         if(colorMatcher(shirtColor,currentColor) === true){
             matchScore = matchScore * matchMultiplier;
@@ -215,18 +232,21 @@ function generation (inventory){
         selectedPantsIndex = score1Index;
         selectedPantsTitle = inventory[pantsIndex][score1Index].title;
         pantsColor = inventory[pantsIndex][score1Index].color;
+        pantsType = inventory[pantsIndex][score1Index].clothing_type
     }
     else if(randomSeed < score1 + score2){
         console.log("choosing pants 2")
         selectedPantsIndex = score2Index;
         selectedPantsTitle = inventory[pantsIndex][score2Index].title;
         pantsColor = inventory[pantsIndex][score2Index].color;
+        pantsType = inventory[pantsIndex][score2Index].clothing_type
     }
     else if(randomSeed < score1 + score2 + score3){
         console.log("choosing pants 3")
         selectedPantsIndex = score3Index;
         selectedPantsTitle = inventory[pantsIndex][score3Index].title;
         pantsColor = inventory[pantsIndex][score3Index].color;
+        pantsType = inventory[pantsIndex][score3Index].clothing_type
     }
 
     console.log(pantsColor);
@@ -263,6 +283,11 @@ function generation (inventory){
     for(var i=0; i < inventory[shoesIndex].length; i++) {
         matchScore = inventory[shoesIndex][i].favorability
         currentColor = inventory[shoesIndex][i].color
+        currentType = inventory[shoesIndex][i].clothing_type
+
+        if(styleMatcher(pantsType,currentType) === true){
+            matchScore = matchScore + 3;
+        }
 
         if(colorMatcher(shirtColor,currentColor) === true){
             matchScore = matchScore * matchMultiplier;
@@ -407,6 +432,25 @@ function colorMatcher (color1, color2) {
             return true;
         else
             return false;
+}
+
+// This function takes 2 types of clothing as strings (piece1 is main piece, piece2 is secondary)
+// returns true if they match, false if they don't
+// Note: this function is super ugly; can be beautified later
+function styleMatcher (piece1, piece2) {
+    if (piece1 === "ss_tee")
+        return true
+    
+    if (piece1 === "ls_tee" && piece2 === "shorts")
+        return false
+    
+    if (piece1 === "jeans" && piece2 === "running_shoes")
+        return false
+
+    if (piece1 === "shorts" && piece2 === "high_tops")
+        return false
+
+    return true
 }
 
 export default generation;
