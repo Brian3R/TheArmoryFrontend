@@ -213,7 +213,7 @@ const Inventory = () => {
                                     </td>
                                     <td style={{...iconCellStyle,backgroundColor:translateColor(item.color)}}>
                                         {(item.color == 'black' || item.color == 'darkBlue') && 
-                                            <img style={{filter: 'invert(1)'}} src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                            <img style={{filter: 'invert()'}} src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
                                         }
                                         {(item.color != 'black' && item.color != 'darkBlue') && 
                                             <img src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
@@ -253,7 +253,7 @@ const Inventory = () => {
                                     </td>
                                     <td style={{...iconCellStyle,backgroundColor:translateColor(item.color)}}>
                                         {(item.color == 'black' || item.color == 'darkBlue') && 
-                                            <img style={{filter: 'invert(1)'}} src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                            <img style={{filter: 'invert()'}} src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
                                         }
                                         {(item.color != 'black' && item.color != 'darkBlue') && 
                                             <img src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
@@ -286,7 +286,7 @@ const Inventory = () => {
                                 <td style={cellStyle}>{outfit[0].color}</td>
                                 <td style={{...iconCellStyle,backgroundColor:translateColor(outfit[0].color)}}>
                                     {(outfit[0].color == 'black' || outfit[0].color == 'darkBlue') && 
-                                        <img style={{filter: 'invert(1)'}} src={`./ico_${outfit[0].clothing_type}.png`} alt={`Icon for clothing type ${outfit[0].clothing_type}`}/>
+                                        <img style={{filter: 'invert()'}} src={`./ico_${outfit[0].clothing_type}.png`} alt={`Icon for clothing type ${outfit[0].clothing_type}`}/>
                                     }
                                     {(outfit[0].color != 'black' && outfit[0].color != 'darkBlue') && 
                                         <img src={`./ico_${outfit[0].clothing_type}.png`} alt={`Icon for clothing type ${outfit[0].clothing_type}`}/>
@@ -299,7 +299,7 @@ const Inventory = () => {
                                 <td style={cellStyle}>{outfit[1].color}</td>
                                 <td style={{...iconCellStyle,backgroundColor:translateColor(outfit[1].color)}}>
                                     {(outfit[1].color == 'black' || outfit[1].color == 'darkBlue') && 
-                                        <img style={{filter: 'invert(1)'}} src={`./ico_${outfit[1].clothing_type}.png`} alt={`Icon for clothing type ${outfit[1].clothing_type}`}/>
+                                        <img style={{filter: 'invert()'}} src={`./ico_${outfit[1].clothing_type}.png`} alt={`Icon for clothing type ${outfit[1].clothing_type}`}/>
                                     }
                                     {(outfit[1].color != 'black' && outfit[1].color != 'darkBlue') && 
                                         <img src={`./ico_${outfit[1].clothing_type}.png`} alt={`Icon for clothing type ${outfit[1].clothing_type}`}/>
@@ -313,7 +313,7 @@ const Inventory = () => {
                                 <td style={cellStyle}>{outfit[2].color}</td>
                                 <td style={{...iconCellStyle,backgroundColor:translateColor(outfit[2].color)}}>
                                     {(outfit[2].color == 'black' || outfit[2].color == 'darkBlue') && 
-                                        <img style={{filter: 'invert(1)'}} src={`./ico_${outfit[2].clothing_type}.png`} alt={`Icon for clothing type ${outfit[2].clothing_type}`}/>
+                                        <img style={{filter: 'invert()'}} src={`./ico_${outfit[2].clothing_type}.png`} alt={`Icon for clothing type ${outfit[2].clothing_type}`}/>
                                     }
                                     {(outfit[2].color != 'black' && outfit[2].color != 'darkBlue') && 
                                         <img src={`./ico_${outfit[2].clothing_type}.png`} alt={`Icon for clothing type ${outfit[2].clothing_type}`}/>

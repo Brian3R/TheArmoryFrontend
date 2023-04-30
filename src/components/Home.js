@@ -24,11 +24,11 @@ const Home = () => {
                     Background
                 </h2>
                 <p style={{width:'600px'}}className='text'>
-                    Our algorithm is based on two data points: Colors and favorability scores. First, we choose the top for the outfit
-                    based on favorability scores, then we choose the pants and shoes based on favorability, how they match with each other,
-                    and how they match with the already-selected shirt. We take feedback from you when you 'like' and 'dislike' outfits,
-                    editing the favorability scores of the items accordingly. If you'd like to manually change the favorability of an item,
-                    you can do that in the inventory screen.
+                    Our algorithm is based on three data points: Colors, clothing types, and favorability scores. First, we choose
+                    the top for the outfit based on favorability scores, then we choose the pants and shoes based on favorability,
+                    how they match with each other, and how they match with the already-selected shirt. We take feedback from you 
+                    when you 'like' and 'dislike' outfits, editing the favorability scores of the items accordingly. If you'd like 
+                    to manually change the favorability of an item, you can do that in the inventory screen.
                 </p>
             </div>
             <br/>

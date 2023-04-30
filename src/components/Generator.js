@@ -214,7 +214,7 @@ const Generator = () => {
                                     <td style={cellStyle}>{inventory[0][indexes.top].color}</td>   
                                     <td style={{...iconCellStyle,backgroundColor:translateColor(inventory[0][indexes.top].color)}}>
                                         {(inventory[0][indexes.top].color == 'black' || inventory[0][indexes.top].color == 'darkBlue') && 
-                                            <img style={{filter: 'invert(1)'}} src={`./ico_${inventory[0][indexes.top].clothing_type}.png`} alt={`Icon for clothing type ${inventory[0][indexes.top].clothing_type}`}/>
+                                            <img style={{filter: 'invert()'}} src={`./ico_${inventory[0][indexes.top].clothing_type}.png`} alt={`Icon for clothing type ${inventory[0][indexes.top].clothing_type}`}/>
                                         }
                                         {(inventory[0][indexes.top].color != 'black' && inventory[0][indexes.top].color != 'darkBlue') && 
                                             <img src={`./ico_${inventory[0][indexes.top].clothing_type}.png`} alt={`Icon for clothing type ${inventory[0][indexes.top].clothing_type}`}/>
@@ -227,7 +227,7 @@ const Generator = () => {
                                     <td style={cellStyle}>{inventory[1][indexes.bottom].color}</td>   
                                     <td style={{...iconCellStyle,backgroundColor:translateColor(inventory[1][indexes.bottom].color)}}>
                                         {(inventory[1][indexes.bottom].color == 'black' || inventory[1][indexes.bottom].color == 'darkBlue') && 
-                                            <img style={{filter: 'invert(1)'}} src={`./ico_${inventory[1][indexes.bottom].clothing_type}.png`} alt={`Icon for clothing type ${inventory[1][indexes.bottom].clothing_type}`}/>
+                                            <img style={{filter: 'invert()'}} src={`./ico_${inventory[1][indexes.bottom].clothing_type}.png`} alt={`Icon for clothing type ${inventory[1][indexes.bottom].clothing_type}`}/>
                                         }
                                         {(inventory[1][indexes.bottom].color != 'black' && inventory[1][indexes.bottom].color != 'darkBlue') && 
                                             <img src={`./ico_${inventory[1][indexes.bottom].clothing_type}.png`} alt={`Icon for clothing type ${inventory[1][indexes.bottom].clothing_type}`}/>
@@ -240,7 +240,7 @@ const Generator = () => {
                                     <td style={cellStyle}>{inventory[2][indexes.shoes].color}</td>       
                                     <td style={{...iconCellStyle,backgroundColor:translateColor(inventory[2][indexes.shoes].color)}}>
                                         {(inventory[2][indexes.shoes].color == 'black' || inventory[2][indexes.shoes].color == 'darkBlue') && 
-                                            <img style={{filter: 'invert(1)'}} src={`./ico_${inventory[2][indexes.shoes].clothing_type}.png`} alt={`Icon for clothing type ${inventory[2][indexes.shoes].clothing_type}`}/>
+                                            <img style={{filter: 'invert()'}} src={`./ico_${inventory[2][indexes.shoes].clothing_type}.png`} alt={`Icon for clothing type ${inventory[2][indexes.shoes].clothing_type}`}/>
                                         }
                                         {(inventory[2][indexes.shoes].color != 'black' && inventory[2][indexes.shoes].color != 'darkBlue') && 
                                             <img src={`./ico_${inventory[2][indexes.shoes].clothing_type}.png`} alt={`Icon for clothing type ${inventory[2][indexes.shoes].clothing_type}`}/>
