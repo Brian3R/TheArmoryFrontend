@@ -39,6 +39,24 @@ const Inventory = () => {
         }
     }
 
+    const translateColor = (color) => {
+        switch(color) {
+            case 'pink': return '#FFB6C1';
+            case 'lightBlue': return '#ADD8E6';
+            case 'darkBlue': return '#00008B';
+            case 'gray': return '#808080';
+            case 'white': return '#FFFFFF';
+            case 'black': return '#000000';
+            case 'red': return '#E32636';
+            case 'orange': return '#ED872D';
+            case 'beige': return '#D2B48C';
+            case 'yellow': return '#FFE135';
+            case 'green': return '#03C03C';
+            case 'purple': return '#9370DB';
+            case 'brown': return '#987654';
+            default: return '#FFFFFF';
+        }
+    }
 
     const handleItemDeletion = async (deleted_item) => {
         console.log(deleted_item);
@@ -112,6 +130,12 @@ const Inventory = () => {
         backgroundColor:'#FFFFFF'
     };
 
+    const iconCellStyle = {
+        width: '64px',
+        border: '2px solid  black',
+        padding: '8px',
+    }
+
     return (
         <div className='page'>
             <div>
@@ -146,6 +170,14 @@ const Inventory = () => {
                                         </div>
                                     </div>
                                 </td>
+                                <td style={{...iconCellStyle,backgroundColor:translateColor(item.color)}}>
+                                    {(item.color == 'black' || item.color == 'darkBlue') && 
+                                        <img style={{filter: 'invert()'}} src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                    }
+                                    {(item.color != 'black' && item.color != 'darkBlue') && 
+                                        <img src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                    }
+                                </td>
                                 <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                             </tr>
                         ))}
@@ -179,6 +211,14 @@ const Inventory = () => {
                                             </div>
                                         </div>
                                     </td>
+                                    <td style={{...iconCellStyle,backgroundColor:translateColor(item.color)}}>
+                                        {(item.color == 'black' || item.color == 'darkBlue') && 
+                                            <img style={{filter: 'invert(1)'}} src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                        }
+                                        {(item.color != 'black' && item.color != 'darkBlue') && 
+                                            <img src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                        }
+                                    </td>
                                     <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
@@ -211,6 +251,14 @@ const Inventory = () => {
                                             </div>
                                         </div>
                                     </td>
+                                    <td style={{...iconCellStyle,backgroundColor:translateColor(item.color)}}>
+                                        {(item.color == 'black' || item.color == 'darkBlue') && 
+                                            <img style={{filter: 'invert(1)'}} src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                        }
+                                        {(item.color != 'black' && item.color != 'darkBlue') && 
+                                            <img src={`./ico_${item.clothing_type}.png`} alt={`Icon for clothing type ${item.clothing_type}`}/>
+                                        }
+                                    </td>
                                     <td><button onClick={() => handleItemDeletion(item)}>Delete</button></td>
                                 </tr>
                         ))}
@@ -236,17 +284,41 @@ const Inventory = () => {
                                 <td style={cellStyle}>{outfit[0].title}</td>
                                 <td style={cellStyle}>{translateType(outfit[0].clothing_type)}</td>
                                 <td style={cellStyle}>{outfit[0].color}</td>
+                                <td style={{...iconCellStyle,backgroundColor:translateColor(outfit[0].color)}}>
+                                    {(outfit[0].color == 'black' || outfit[0].color == 'darkBlue') && 
+                                        <img style={{filter: 'invert(1)'}} src={`./ico_${outfit[0].clothing_type}.png`} alt={`Icon for clothing type ${outfit[0].clothing_type}`}/>
+                                    }
+                                    {(outfit[0].color != 'black' && outfit[0].color != 'darkBlue') && 
+                                        <img src={`./ico_${outfit[0].clothing_type}.png`} alt={`Icon for clothing type ${outfit[0].clothing_type}`}/>
+                                    }
+                                </td>
                             </tr>
                             <tr key={outfit[1]}>
                                 <td style={cellStyle}>{outfit[1].title}</td>
                                 <td style={cellStyle}>{translateType(outfit[1].clothing_type)}</td>
                                 <td style={cellStyle}>{outfit[1].color}</td>
+                                <td style={{...iconCellStyle,backgroundColor:translateColor(outfit[1].color)}}>
+                                    {(outfit[1].color == 'black' || outfit[1].color == 'darkBlue') && 
+                                        <img style={{filter: 'invert(1)'}} src={`./ico_${outfit[1].clothing_type}.png`} alt={`Icon for clothing type ${outfit[1].clothing_type}`}/>
+                                    }
+                                    {(outfit[1].color != 'black' && outfit[1].color != 'darkBlue') && 
+                                        <img src={`./ico_${outfit[1].clothing_type}.png`} alt={`Icon for clothing type ${outfit[1].clothing_type}`}/>
+                                    }
+                                </td>
                                 <td><button onClick={() => handleOutfitDeletion(outfit)}>Delete</button></td>
                             </tr>
                             <tr key={outfit[2]}>
                             <td style={cellStyle}>{outfit[2].title}</td>
                                 <td style={cellStyle}>{translateType(outfit[2].clothing_type)}</td>
                                 <td style={cellStyle}>{outfit[2].color}</td>
+                                <td style={{...iconCellStyle,backgroundColor:translateColor(outfit[2].color)}}>
+                                    {(outfit[2].color == 'black' || outfit[2].color == 'darkBlue') && 
+                                        <img style={{filter: 'invert(1)'}} src={`./ico_${outfit[2].clothing_type}.png`} alt={`Icon for clothing type ${outfit[2].clothing_type}`}/>
+                                    }
+                                    {(outfit[2].color != 'black' && outfit[2].color != 'darkBlue') && 
+                                        <img src={`./ico_${outfit[2].clothing_type}.png`} alt={`Icon for clothing type ${outfit[2].clothing_type}`}/>
+                                    }
+                                </td>
                             </tr>
                         </tbody>
                     </table>

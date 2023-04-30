@@ -102,6 +102,24 @@ const Generator = () => {
             default: return type;
         }
     }
+    const translateColor = (color) => {
+        switch(color) {
+            case 'pink': return '#FFB6C1';
+            case 'lightBlue': return '#ADD8E6';
+            case 'darkBlue': return '#00008B';
+            case 'gray': return '#808080';
+            case 'white': return '#FFFFFF';
+            case 'black': return '#000000';
+            case 'red': return '#E32636';
+            case 'orange': return '#ED872D';
+            case 'beige': return '#D2B48C';
+            case 'yellow': return '#FFE135';
+            case 'green': return '#03C03C';
+            case 'purple': return '#9370DB';
+            case 'brown': return '#987654';
+            default: return '#FFFFFF';
+        }
+    }
     const tableStyle = {
         borderCollapse: 'collapse',
     };
@@ -112,6 +130,11 @@ const Generator = () => {
         padding: '8px',
         backgroundColor:'#ffffff'
     };
+    const iconCellStyle = {
+        width: '64px',
+        border: '2px solid  black',
+        padding: '8px',
+    }
     if(!sessionStorage.getItem('userid')) {
         return (
             <div className='page'>
@@ -188,17 +211,42 @@ const Generator = () => {
                                 <tr key={inventory[0][indexes.top].title}>
                                     <td style={cellStyle}>{inventory[0][indexes.top].title}</td>
                                     <td style={cellStyle}>{translateType(inventory[0][indexes.top].clothing_type)}</td>
-                                    <td style={cellStyle}>{inventory[0][indexes.top].color}</td>                                
+                                    <td style={cellStyle}>{inventory[0][indexes.top].color}</td>   
+                                    <td style={{...iconCellStyle,backgroundColor:translateColor(inventory[0][indexes.top].color)}}>
+                                        {(inventory[0][indexes.top].color == 'black' || inventory[0][indexes.top].color == 'darkBlue') && 
+                                            <img style={{filter: 'invert(1)'}} src={`./ico_${inventory[0][indexes.top].clothing_type}.png`} alt={`Icon for clothing type ${inventory[0][indexes.top].clothing_type}`}/>
+                                        }
+                                        {(inventory[0][indexes.top].color != 'black' && inventory[0][indexes.top].color != 'darkBlue') && 
+                                            <img src={`./ico_${inventory[0][indexes.top].clothing_type}.png`} alt={`Icon for clothing type ${inventory[0][indexes.top].clothing_type}`}/>
+                                        }
+                                    </td>                             
                                 </tr>
                                 <tr key={inventory[1][indexes.bottom].title}>
                                     <td style={cellStyle}>{inventory[1][indexes.bottom].title}</td>
                                     <td style={cellStyle}>{translateType(inventory[1][indexes.bottom].clothing_type)}</td>
-                                    <td style={cellStyle}>{inventory[1][indexes.bottom].color}</td>                                
+                                    <td style={cellStyle}>{inventory[1][indexes.bottom].color}</td>   
+                                    <td style={{...iconCellStyle,backgroundColor:translateColor(inventory[1][indexes.bottom].color)}}>
+                                        {(inventory[1][indexes.bottom].color == 'black' || inventory[1][indexes.bottom].color == 'darkBlue') && 
+                                            <img style={{filter: 'invert(1)'}} src={`./ico_${inventory[1][indexes.bottom].clothing_type}.png`} alt={`Icon for clothing type ${inventory[1][indexes.bottom].clothing_type}`}/>
+                                        }
+                                        {(inventory[1][indexes.bottom].color != 'black' && inventory[1][indexes.bottom].color != 'darkBlue') && 
+                                            <img src={`./ico_${inventory[1][indexes.bottom].clothing_type}.png`} alt={`Icon for clothing type ${inventory[1][indexes.bottom].clothing_type}`}/>
+                                        }
+                                    </td>                             
                                 </tr>
                                 <tr key={inventory[2][indexes.shoes].title}>
                                     <td style={cellStyle}>{inventory[2][indexes.shoes].title}</td>
                                     <td style={cellStyle}>{translateType(inventory[2][indexes.shoes].clothing_type)}</td>
-                                    <td style={cellStyle}>{inventory[2][indexes.shoes].color}</td>                                
+                                    <td style={cellStyle}>{inventory[2][indexes.shoes].color}</td>       
+                                    <td style={{...iconCellStyle,backgroundColor:translateColor(inventory[2][indexes.shoes].color)}}>
+                                        {(inventory[2][indexes.shoes].color == 'black' || inventory[2][indexes.shoes].color == 'darkBlue') && 
+                                            <img style={{filter: 'invert(1)'}} src={`./ico_${inventory[2][indexes.shoes].clothing_type}.png`} alt={`Icon for clothing type ${inventory[2][indexes.shoes].clothing_type}`}/>
+                                        }
+                                        {(inventory[2][indexes.shoes].color != 'black' && inventory[2][indexes.shoes].color != 'darkBlue') && 
+                                            <img src={`./ico_${inventory[2][indexes.shoes].clothing_type}.png`} alt={`Icon for clothing type ${inventory[2][indexes.shoes].clothing_type}`}/>
+                                        }
+                                        {/*<img src={`./ico_${inventory[2][indexes.shoes].clothing_type}.png`} alt={`Icon for clothing type ${inventory[2][indexes.shoes].clothing_type}`}/>*/}
+                                    </td>                         
                                 </tr>
                             </tbody>
                         </table>
