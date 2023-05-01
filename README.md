@@ -6,4 +6,4 @@
  # Dependencies
  * Users should npm install in the directory
  * Users should use command npm install --save react-router-dom in the directory
- # The command to run the code npm start
+ # The command to run the code is npm start
